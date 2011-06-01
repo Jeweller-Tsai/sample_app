@@ -221,3 +221,9 @@ form.new_micropost textarea{
     height:4em;
     margin-bottom:0;
 }
+span.match{
+    font-size:130%;
+    font-weight:bold;
+    color:red;
+}
+

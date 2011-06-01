@@ -20,7 +20,7 @@ describe UsersController do
 
         @users=[@first,second,third]
         30.times do
-          @users<<Factory(:user ,:email=>Factory.next(:email))
+          @users << Factory(:user ,:email=>Factory.next(:email))
         end
       end
 
@@ -28,6 +28,7 @@ describe UsersController do
         get :index
         response.should be_success
       end
+
 
       it "should have the right title" do
         get :index
@@ -354,3 +355,4 @@ describe UsersController do
   end
 
 end
+

@@ -1,4 +1,7 @@
 class Micropost < ActiveRecord::Base
+  include Twitter::Extractor
+  include Twitter::Autolink
+
   attr_accessible :content
 
   belongs_to :user
@@ -11,6 +14,25 @@ class Micropost < ActiveRecord::Base
   # Return microposts from the users being followed by the given user
   scope :from_users_followed_by, lambda{ |user| followed_by(user) }
 
+  # defien index for sphinx
+  define_index do
+    indexes content
+    indexes user(:name), as => author, sortable => true
+
+    has user_id, created_at, updated_at
+  end
+
+  sphinx_scope(:latest_first){
+    {:order => 'created_at DESC'}
+  }
+
+  default_sphinx_scope :latest_first
+
+
+  def mentioned_usernames(content)
+    extract_mentioned_screen_names(content)
+  end
+
   private
 
     # Return an SQL condition for users followed by the given user
@@ -21,3 +43,4 @@ class Micropost < ActiveRecord::Base
     end
 
 end
+

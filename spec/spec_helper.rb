@@ -35,4 +35,8 @@ RSpec.configure do |config|
     fill_in :password , :with=>user.password
     click_button
   end
+
+  require 'thinking_sphinx/test'
+  ThinkingSphinx::Test.init
 end
+

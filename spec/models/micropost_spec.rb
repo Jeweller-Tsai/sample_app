@@ -67,4 +67,11 @@ describe Micropost do
       Micropost.from_users_followed_by(@user).should_not include(@third_post)
     end
   end
+
+  describe "thinking-sphinx test" do
+    it" should have a class method called 'search' " do
+      User.should respond_to(:search)
+    end
+  end
 end
+

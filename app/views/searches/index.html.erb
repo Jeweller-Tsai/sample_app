@@ -1,0 +1,19 @@
+<h2>Search results</h2>
+  <%= will_paginate(@results) %>
+    <% if @results.empty? %>
+      <h3>No results</h3>
+    <% else %>
+    <table><span class=“match”>
+
+        <td>
+          <ul class= <% search_type %> >
+
+            <%= render :partial => partial(@results), :collection => @results %>
+
+          <ul>
+        </td></span>
+
+     </table>
+    <% end %>
+  <%= will_paginate(@results) %>
+

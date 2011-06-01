@@ -1,7 +1,14 @@
 <h1>All users</h1>
 <%= will_paginate  %>
-<ul class="users">
-  <%= render @users %>
-</ul>
-
+<table>
+  <td class="main">
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+  </td>
+  <td class="sidebar">
+    <%= render 'searches/box' %>
+  </td>
+</table>
 <%= will_paginate @users %>
+

@@ -248,5 +248,28 @@ describe User do
       Relationship.find_by_id(@relationship.id).should be_nil
     end
   end
+
+  describe "thinking-sphinx test" do
+    it" should have a class method called 'search' " do
+      User.should respond_to(:search)
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
 

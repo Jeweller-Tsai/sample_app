@@ -49,7 +49,14 @@ class User < ActiveRecord::Base
                        :length=>{ :within=>6..40 }
 
   before_save :encrypt_password
+# ---------------------------------------------------------------------------------------------------------
+  # defin index for sphinx
+  define_index do
+    indexes :name, sortable => true
 
+    has created_at, updated_at
+  end
+# -------------------------------------------------------------------------------------------------------
   # return true if the user's password matches the submitted password
   def has_password?(submitted_password)
       encrypted_password==encrypt(submitted_password)
@@ -57,7 +64,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email ,submitted_password)
     user=find_by_email(email)                     # omit the explict User class name
-                                                  #since this method is inside the User class
+                                                  # since this method is inside the User class
     user && user.has_password?(submitted_password) ? user : nil
   end
   def self.authenticate_with_salt(id ,cookie_salt)
@@ -78,7 +85,7 @@ class User < ActiveRecord::Base
   def feed
     Micropost.from_users_followed_by(self)
   end
-
+# ------------------------------------------------------------------------------------------------------
   private
     def encrypt_password
       self.salt = make_salt if new_record?
@@ -94,3 +101,4 @@ class User < ActiveRecord::Base
        Digest::SHA2.hexdigest(string)
     end
 end
+

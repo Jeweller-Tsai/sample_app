@@ -1,8 +1,11 @@
 SampleApp::Application.routes.draw do
+  get "searches/index"
+
   get "relationships/create"
 
   get "relationships/destroy"
 
+  resources :searches
   resources :sessions, :only=>[:new ,:create ,:destroy]
   resources :microposts, :only=>[:create, :destroy]
   resources :relationships, :only=>[:create, :destroy]
@@ -87,3 +90,4 @@ SampleApp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 end
+

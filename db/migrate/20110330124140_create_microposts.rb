@@ -1,7 +1,7 @@
 class CreateMicroposts < ActiveRecord::Migration
   def self.up
     create_table :microposts do |t|
-      t.string :content
+      t.text :content
       t.integer :user_id
 
       t.timestamps
@@ -13,3 +13,4 @@ class CreateMicroposts < ActiveRecord::Migration
     drop_table :microposts
   end
 end
+
